@@ -9,6 +9,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.company.entities.City;
@@ -37,7 +39,14 @@ public class CityService {
 		} else {
 			logger.info("Initial Data Already Dumped");
 		}
-		
+	}
+	
+	public Page<City> getAllPagableCities(Pageable pageable) {
+		return cityRepository.findAll(pageable);
+	}
+	
+	public Page<City> getAllPagableCitiesByName(String name, Pageable pageable) {
+		return cityRepository.findByNameContainingIgnoreCase(name, pageable);
 	}
 
 }
