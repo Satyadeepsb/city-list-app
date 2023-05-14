@@ -18,6 +18,7 @@
         [src]="city?.photo"
         [alt]="city?.name"
         style="height: 200px"
+        (error)="handleMissingImage($event)"
       />
     </div>
   </div>

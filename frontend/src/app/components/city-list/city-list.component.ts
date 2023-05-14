@@ -103,4 +103,9 @@ export class CityListComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.searchSubscription?.unsubscribe();
   }
+
+  public handleMissingImage(event: Event) {
+    (event.target as HTMLImageElement).src =
+      'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png';
+  }
 }
