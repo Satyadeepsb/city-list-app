@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.company.services.CityService;
+import com.company.services.DumpDataService;
 
 @Component
 public class DbRunner implements CommandLineRunner{
@@ -16,11 +17,17 @@ public class DbRunner implements CommandLineRunner{
 	@Autowired
 	private CityService cityService;
 	
+	@Autowired
+	private DumpDataService dumpDataService;
+	
 	@Override
     public void run(String...args) throws Exception {
 		logger.info("Called Intial Data");
 		cityService.saveIntialData();
 		logger.info("Saved Intial Data");
+		dumpDataService.dumpInitialUserData();
+		logger.info("Saved Intial User Data");
+	
 	}
 
 }
