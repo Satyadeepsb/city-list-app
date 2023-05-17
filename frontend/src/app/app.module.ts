@@ -8,9 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { httpInterceptorProviders } from './interceptors/http.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, CityListComponent],
+  declarations: [AppComponent, CityListComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatPaginatorModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
