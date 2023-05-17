@@ -34,7 +34,7 @@ import com.company.utils.JwtUtils;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -53,6 +53,7 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+	@CrossOrigin
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -126,5 +127,12 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+	
+	@CrossOrigin
+	@PostMapping("/signout")
+	public ResponseEntity<?> logout() {
+		SecurityContextHolder.clearContext();
+		return (ResponseEntity<?>) ResponseEntity.ok();
 	}
 }

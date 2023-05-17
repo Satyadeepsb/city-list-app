@@ -17,7 +17,6 @@ import com.company.entities.City;
 import com.company.helpers.Path;
 import com.company.services.CityService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class CityController {
 	
@@ -26,6 +25,7 @@ public class CityController {
 	@Autowired
 	private CityService cityService;
 	
+	@CrossOrigin
 	@GetMapping(Path.REST_CITIES)
 	public Page<City> getAllCities( @RequestParam(required = false) String name, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 		logger.info("Get paged cities " + name);
