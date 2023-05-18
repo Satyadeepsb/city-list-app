@@ -74,7 +74,7 @@ npm run build-prod
 Database - Postgres
 
 - Install Postgres database
-- Create Dtabase with name `db-kn`
+- Create Database with name `db-kn`
 - Username - `postgres`
 - Password - `root`
 
