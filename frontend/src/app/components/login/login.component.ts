@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      this.router.navigate(['/cities']);
     }
   }
 
@@ -37,12 +38,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.router.navigate(['/city-list']);
-        // this.reloadPage();
+        this.router.navigate(['cities']);
       },
       error: (err) => {
         this.errorMessage = err.error.message;

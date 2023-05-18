@@ -1,8 +1,10 @@
-td {
-  text-align: center;
-  vertical-align: middle;
+.wrapper {
+  max-width: 500px;
+  border-radius: 10px;
+  margin: 50px auto;
+  padding: 30px 40px;
+  box-shadow: 20px 20px 80px rgb(206, 206, 206);
 }
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -11,9 +13,9 @@ td {
 
 .card {
   width: 300px;
-  color: #7cfc00;
-  background: #364650;
-  border: 1px solid #7cfc00;
+  // color: #7cfc00;
+  // background: #364650;
+  // border: 1px solid #7cfc00;
   padding: 0.6em;
   display: flex;
   flex-direction: column;
@@ -22,6 +24,8 @@ td {
   transition: 0.3s;
   margin: 10px;
   transform: scale(1);
+  border-radius: 10px;
+  box-shadow: 20px 20px 80px rgb(206, 206, 206);
 }
 
 .card:hover {
@@ -43,4 +47,5 @@ td {
 
 .card-image {
   max-width: 230px;
+  border-radius: 20px;
 }

@@ -17,6 +17,10 @@ import {
   debounceTime,
   switchMap,
 } from 'rxjs';
+import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AppConstants } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-city-list',
@@ -26,30 +30,44 @@ import {
 export class CityListComponent implements OnInit, OnDestroy {
   cities: City[] = [];
   totalElements: number = 0;
+  roles: string[] = [];
   private readonly searchSubject = new Subject<string | undefined>();
   private searchSubscription?: Subscription;
   @ViewChild('searchQueryEle', { static: true }) searchQueryElement: ElementRef;
   searchQuery: string = '';
 
-  constructor(public cityService: CityService, searchQueryElement: ElementRef) {
+  constructor(
+    public cityService: CityService,
+    searchQueryElement: ElementRef,
+    private storageService: StorageService,
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) {
     this.searchQueryElement = searchQueryElement;
   }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.roles = this.storageService.getUser().roles;
+    }
     this.getCities({ page: 0, size: 12 }, '');
-    // this.searchSubject.next('');
   }
 
   private getCities(pageRequest: PageParam, searchQuery: string): void {
+    this.spinner.show(undefined, { fullScreen: true });
     this.cityService
       .getAll(pageRequest.page, pageRequest.size, searchQuery)
       .subscribe(
-        (data: Page) => this.setCitiesData(data),
+        (data: Page) => {
+          this.setCitiesData(data);
+        },
         (error) => {
           console.log(error.error.message);
+          this.spinner.hide();
         },
         () => {
           this.setupSearchSubscription(pageRequest, searchQuery);
+          this.spinner.hide();
         }
       );
   }
@@ -58,6 +76,7 @@ export class CityListComponent implements OnInit, OnDestroy {
     pageRequest: PageParam,
     searchQuery: string
   ): void {
+    this.spinner.show(undefined, { fullScreen: true });
     this.searchSubscription = this.searchSubject
       .pipe(
         debounceTime(3000),
@@ -71,17 +90,23 @@ export class CityListComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(
-        (data: Page) => this.setCitiesData(data),
+        (data: Page) => {
+          this.setCitiesData(data);
+        },
         (error) => {
           console.log(error.error.message);
+          this.spinner.hide();
         },
-        () => {}
+        () => {
+          this.spinner.hide();
+        }
       );
   }
 
   private setCitiesData(data: Page): void {
     this.cities = data?.content;
     this.totalElements = data?.totalElements;
+    this.spinner.hide();
   }
 
   public onSearchQueryInput(event: Event): void {
@@ -105,7 +130,10 @@ export class CityListComponent implements OnInit, OnDestroy {
   }
 
   public handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src =
-      'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png';
+    (event.target as HTMLImageElement).src = AppConstants.IMAGE_NOT_FOUND_URL;
+  }
+
+  public redirectTo(id: number): void {
+    this.router.navigate(['cities', id]);
   }
 }

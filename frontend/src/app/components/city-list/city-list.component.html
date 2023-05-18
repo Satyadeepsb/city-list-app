@@ -20,43 +20,18 @@
         style="height: 200px"
         (error)="handleMissingImage($event)"
       />
+      <button
+        type="button"
+        class="btn btn-warning mt-2"
+        (click)="redirectTo(city.id)"
+        *ngIf="this.roles.includes('ROLE_ALLOW_EDIT')"
+      >
+        Edit
+      </button>
     </div>
   </div>
 
   <div class="table-responsive">
-    <!-- <table class="table table-bordered p-0 m-0" aria-describedby="city-table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Photo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr scope="row" *ngFor="let city of cities">
-          <td style="width: 20px">{{ city?.id }}</td>
-          <td>
-            {{ city?.name }}
-          </td>
-          <td style="width: 150px">
-            <img
-              [src]="city?.photo"
-              [alt]="city?.name"
-              class="img-fluid img-thumbnail"
-              style="
-                float: left;
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-              "
-            />
-          </td>
-        </tr>
-        <tr scope="row" *ngIf="cities.length === 0">
-          <td colspan="6" class="text-center">No record found</td>
-        </tr>
-      </tbody>
-    </table> -->
     <mat-paginator
       [pageSizeOptions]="[12, 24, 96]"
       [pageSize]="12"

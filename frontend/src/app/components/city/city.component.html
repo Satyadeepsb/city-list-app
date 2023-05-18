@@ -1,0 +1,68 @@
+<div class="wrapper bg-white">
+  <form
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group py-2">
+      <label for="name">Name</label>
+      <div class="input-field">
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="city.name"
+          required
+          #name="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && name.errors }"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="name.errors && f.submitted"
+          class="invalid-feedback"
+        >
+          Name is required!
+        </div>
+      </div>
+    </div>
+    <div class="form-group py-1 pb-2">
+      <label for="photo">Photo URL</label>
+      <div class="input-field">
+        <input
+          type="text"
+          name="photo"
+          [(ngModel)]="city.photo"
+          required
+          minlength="6"
+          #photo="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && photo.errors }"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="photo.errors && f.submitted"
+          class="invalid-feedback"
+        >
+          <div *ngIf="photo.errors['required']">Photo is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-block text-center my-3 w-100 mb-2">Update</button>
+    </div>
+  </form>
+
+  <h3 class="mb-2 mt-2 text-center">Image Preview</h3>
+  <div class="card-container">
+    <div class="card">
+      <img
+        class="card-image"
+        [src]="city.photo"
+        [alt]="city.name"
+        style="height: 200px"
+        (error)="handleMissingImage($event)"
+      />
+    </div>
+  </div>
+</div>

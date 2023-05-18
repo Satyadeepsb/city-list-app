@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +46,26 @@ public class CityService {
 		return cityRepository.findAll(pageable);
 	}
 	
+	public Optional<City> getCityById(Long id) {
+		return cityRepository.findById(id);
+	}
+	
 	public Page<City> getAllPagableCitiesByName(String name, Pageable pageable) {
 		return cityRepository.findByNameContainingIgnoreCase(name, pageable);
+	}
+	
+	public Optional<City> updateCity(City city) {
+		if(city == null) {
+			return Optional.empty();
+		}
+		Optional<City> cityDbObjOp =	cityRepository.findById(city.getId());
+		if(cityDbObjOp.isPresent()) {
+			City cityLocal = cityDbObjOp.get();
+			cityLocal.setName(city.getName());
+			cityLocal.setPhoto(city.getPhoto());
+			return Optional.of(cityRepository.save(cityLocal));
+		}
+		return Optional.empty();
 	}
 
 }

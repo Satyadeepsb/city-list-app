@@ -10,9 +10,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { httpInterceptorProviders } from './interceptors/http.interceptor';
+import { CityComponent } from './components/city/city.component';
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { CityRouteGuard } from './route-guards/city-route.guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [AppComponent, CityListComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    CityListComponent,
+    LoginComponent,
+    CityComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,8 +29,13 @@ import { httpInterceptorProviders } from './interceptors/http.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    httpInterceptorProviders,
+    authInterceptorProviders,
+    CityRouteGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { EventBusService } from './services/event-bus.service';
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private eventBusService: EventBusService
+    private eventBusService: EventBusService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class AppComponent {
         console.log(res);
         this.storageService.clean();
 
-        window.location.reload();
+        this.router.navigate(['login']);
       },
       error: (err) => {
         console.log(err);
