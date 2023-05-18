@@ -71,6 +71,13 @@ Build Frontend (Angular):
 npm run build-prod
 ```
 
+Database - Postgres
+
+- Install Postgres database
+- Create Dtabase with name `db-kn`
+- Username - `postgres`
+- Password - `root`
+
 Run Backend (Spring Boot):
 
 ```

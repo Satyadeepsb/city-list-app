@@ -51,7 +51,7 @@ public class CityController {
 	public ResponseEntity<?> getCityById(@PathVariable Long id) {
 		logger.info("Get  city by id " + id);
 		Optional<City> cityOp = cityService.getCityById(id);
-		if(cityOp.isEmpty()) {
+		if(!cityOp.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.ok(cityOp.get());
@@ -62,7 +62,7 @@ public class CityController {
 	public ResponseEntity<?> updateCity(@NotNull @RequestBody City city) {
 		logger.info("updateCity ");
 		Optional<City> cityOp =cityService.updateCity(city);
-		if(cityOp.isEmpty()) {
+		if(!cityOp.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.ok(cityOp.get());
