@@ -24,6 +24,9 @@
 ## USER Role User - City Edit - Access Denied
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-edit-access-denied.JPG)
 
+## Search - City List
+![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/search.JPG)
+
 # Getting Started
 
 ## Requirements
