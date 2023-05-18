@@ -9,22 +9,29 @@
 - [Thank you!](#thank-you)
 
 # Preview
+
 ## Login Page
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/login.JPG)
 
 ## ALLOW_EIDT_ROLE User - City List View
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/admin-city-view.JPG)
 
 ## ALLOW_EIDT_ROLE User - City Edit
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/admin-city-edit.JPG)
 
 ## USER Role User - City List View
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-city-view-page.JPG)
 
 ## USER Role User - City Edit - Access Denied
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-edit-access-denied.JPG)
 
 ## Search - City List
+
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/search.JPG)
 
 # Getting Started
@@ -36,6 +43,9 @@
 - [Nodejs](https://nodejs.org/en/)
   - You'll know you've installed nodejs right if you can run:
     - `node --version` and get an ouput like: `vx.x.x`
+- [Angular](https://angular.io/)
+  - You'll know you've installed angular right if you can run:
+    - `ng version`
 - [Gradle](https://gradle.org/install/)
   - Gradle is a build automation tool for multi-language software development.
 
