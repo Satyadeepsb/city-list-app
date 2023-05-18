@@ -19,7 +19,7 @@
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/admin-city-edit.JPG)
 
 ## USER Role User - City List View
-![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-city-view.JPG)
+![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-city-view-page.JPG)
 
 ## USER Role User - City Edit - Access Denied
 ![login](https://github.com/Satyadeepsb/city-list-app/blob/main/preview/user-edit-access-denied.JPG)
